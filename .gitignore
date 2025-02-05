@@ -1,0 +1,6 @@
+*.DIGESTS
+*.raw
+*.tgz
+*.tar.gz
+Release.md
+hashistack/*
