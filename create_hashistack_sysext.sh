@@ -19,7 +19,7 @@ DMIDECODE_VERSION="3.6"
 
 
 mkdir -p hashistack/usr/bin
-mkdir -p hashistack/opt/cni/bin
+mkdir -p hashistack/usr/lib/cni
 WORKDIR=$(pwd)
 
 # Actual HashiStack
@@ -34,11 +34,11 @@ unzip -o hashistack/vault.zip -d hashistack/usr/bin
 
 # CNI plugins
 wget https://github.com/containernetworking/plugins/releases/download/v${CNI_PLUGINS_VERSION}/cni-plugins-linux-amd64-v${CNI_PLUGINS_VERSION}.tgz -O hashistack/cni-plugins.tgz
-tar -zxvf hashistack/cni-plugins.tgz -C hashistack/opt/cni/bin
+tar -zxvf hashistack/cni-plugins.tgz -C hashistack/usr/lib/cni
 wget https://github.com/Azure/azure-container-networking/releases/download/v${AZURE_CNI_PLUGINS_VERSION}/azure-vnet-cni-linux-amd64-v${AZURE_CNI_PLUGINS_VERSION}.tgz -O hashistack/azure-vnet-cni.tgz
-tar -zxvf hashistack/azure-vnet-cni.tgz -C hashistack/opt/cni/bin
-rm -f hashistack/opt/cni/bin/10-azure.conflist
-rm -f hashistack/opt/cni/bin/azure-vnet-telemetry.config
+tar -zxvf hashistack/azure-vnet-cni.tgz -C hashistack/usr/lib/cni
+rm -f hashistack/usr/lib/cni/10-azure.conflist
+rm -f hashistack/usr/lib/cni/azure-vnet-telemetry.config
 
 # Addons
 wget https://github.com/grafana/loki/releases/download/v${LOKI_VERSION}/loki-linux-amd64.zip -O hashistack/loki.zip
