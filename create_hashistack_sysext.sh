@@ -13,6 +13,7 @@ CNI_PLUGINS_VERSION="1.6.2"
 AZURE_CNI_PLUGINS_VERSION="1.6.20"
 
 ## Addons
+COREDNS_VERSION="1.12.0"
 LOKI_VERSION="3.3.2"
 AZURE_KEY_VAULT_AGENT_VERSION="1.8.0"
 DMIDECODE_VERSION="3.6"
@@ -41,6 +42,8 @@ rm -f hashistack/usr/lib/cni/10-azure.conflist
 rm -f hashistack/usr/lib/cni/azure-vnet-telemetry.config
 
 # Addons
+wget https://github.com/coredns/coredns/releases/download/v${COREDNS_VERSION}/coredns_${COREDNS_VERSION}_linux_amd64.tgz -O hashistack/coredns.tgz
+tar -zxvf hashistack/coredns.tgz -C hashistack/usr/bin
 wget https://github.com/grafana/loki/releases/download/v${LOKI_VERSION}/loki-linux-amd64.zip -O hashistack/loki.zip
 unzip -o hashistack/loki.zip -d hashistack/usr/bin
 mv hashistack/usr/bin/loki-linux-amd64 hashistack/usr/bin/loki
@@ -75,6 +78,7 @@ echo "* [HashiCorp Nomad ${NOMAD_VERSION}](https://github.com/hashicorp/nomad/re
 echo "* [HashiCorp Vault ${VAULT_VERSION}](https://github.com/hashicorp/vault/releases/tag/v${VAULT_VERSION})" >> Release.md
 echo "* [CNI reference plugins ${CNI_PLUGINS_VERSION}](https://github.com/containernetworking/plugins/releases/tag/v${CNI_PLUGINS_VERSION})" >> Release.md
 echo "* [Azure CNI plugins ${AZURE_CNI_PLUGINS_VERSION}](https://github.com/Azure/azure-container-networking/releases/tag/v${AZURE_CNI_PLUGINS_VERSION})" >> Release.md
+echo "* [CoreDNS ${COREDNS_VERSION}](https://github.com/coredns/coredns/releases/tag/v${COREDNS_VERSION})" >> Release.md
 echo "* [Grafana Loki ${LOKI_VERSION}](https://github.com/grafana/loki/releases/tag/v${LOKI_VERSION})" >> Release.md
 echo "* [Azure Key Vault Agent ${AZURE_KEY_VAULT_AGENT_VERSION}](https://github.com/covermymeds/azure-key-vault-agent/releases/tag/v${AZURE_KEY_VAULT_AGENT_VERSION})" >> Release.md
 echo "* [dmidecode ${DMIDECODE_VERSION}](http://download.savannah.gnu.org/releases/dmidecode/)" >> Release.md
@@ -83,6 +87,7 @@ echo "Binaries inside of image are using following licenses:" >> Release.md
 echo "* HashiCorp binaries, [Business Source License](https://www.hashicorp.com/en/bsl)" >> Release.md
 echo "* CNI reference plugins, [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)" >> Release.md
 echo "* Azure CNI plugins, [MIT](https://opensource.org/license/mit)" >> Release.md
+echo "* CoreDNS, [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)" >> Release.md
 echo "* Grafana binaries, [AGPLv3](https://grafana.com/licensing/)" >> Release.md
 echo "* Azure Key Vault Agent, [The MIT License](https://opensource.org/license/mit)" >> Release.md
 echo "* dmidecode, [GPL-2.0](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)" >> Release.md
